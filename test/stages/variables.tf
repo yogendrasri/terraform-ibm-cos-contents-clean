@@ -1,50 +1,29 @@
-
-# Resource Group Variables
-variable "resource_group_name" {
+variable "COS-S3-ENDPOINT" {
   type        = string
-  description = "Existing resource group where the IKS cluster will be provisioned."
+  description = "S3-ENDPOINT of COS - https://s3.us.cloud-object-storage.appdomain.cloud for us "
+  #default     = ""
 }
 
-variable "ibmcloud_api_key" {
+variable "ACCESS-KEY" {
   type        = string
-  description = "The api key for IBM Cloud access"
+  description = "ACCESS-KEY of COS"
+  #default     = ""
 }
 
-variable "region" {
+variable "SECRET-KEY" {
   type        = string
-  description = "Region for VLANs defined in private_vlan_number and public_vlan_number."
+  description = "SECRET-KEY of COS"
+  #default     = ""
 }
 
-variable "namespace" {
+variable "bucket-name" {
   type        = string
-  description = "Namespace for tools"
+  description = "COS bucket-name"
+  #default     = ""
 }
 
-variable "cluster_name" {
+variable "Alias" {
   type        = string
-  description = "The name of the cluster"
-  default     = ""
-}
-
-variable "cluster_type" {
-  type        = string
-  description = "The type of cluster that should be created (openshift or kubernetes)"
-}
-
-variable "cluster_exists" {
-  type        = string
-  description = "Flag indicating if the cluster already exists (true or false)"
-  default     = "true"
-}
-
-variable "name_prefix" {
-  type        = string
-  description = "Prefix name that should be used for the cluster and services. If not provided then resource_group_name will be used"
-  default     = ""
-}
-
-variable "vpc_cluster" {
-  type        = bool
-  description = "Flag indicating that this is a vpc cluster"
-  default     = false
+  description = "A description of my variable"
+  default     = "IBMCOS"
 }

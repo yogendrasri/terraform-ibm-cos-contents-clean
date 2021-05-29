@@ -25,7 +25,7 @@ The module depends on the following software components:
 
 ### Command-line tools
 
-- terraform - v12
+- terraform - v13
 - kubectl
 
 ### Terraform providers
@@ -37,25 +37,24 @@ The module depends on the following software components:
 
 This module makes use of the output from other modules:
 
-- Cluster - github.com/ibm-garage-cloud/terraform-ibm-container-platform.git
-- Namespace - github.com/ibm-garage-clout/terraform-cluster-namespace.git
-- etc
-
 ## Example usage
 
-```hcl-terraform
-module "dev_tools_argocd" {
-  source = "github.com/ibm-garage-cloud/terraform-tools-argocd.git?ref=v1.0.0"
+## In this terraform module we are using MinIO
 
-  cluster_config_file = module.dev_cluster.config_file_path
-  cluster_type        = module.dev_cluster.type
-  app_namespace       = module.dev_cluster_namespaces.tools_namespace_name
-  ingress_subdomain   = module.dev_cluster.ingress_hostname
-  olm_namespace       = module.dev_software_olm.olm_namespace
-  operator_namespace  = module.dev_software_olm.target_namespace
-  name                = "argocd"
-}
-```
+##MinIO
+### MinIO installation
+wget https://dl.min.io/client/mc/release/linux-amd64/mc
+### MinIO permissions
+ chmod +x mc
+ ### test setup
+ ./mc --version
+### MinIO configration 
+mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY> 
+### MinIO delete bucket contents
+./mc rm cos/<bucket name>/ --recursive --force
+
+
+Other options 
 
 ##Install rclone
 
@@ -187,15 +186,5 @@ The easiest way to remove flow logs from a COS bucket to help with a terraform d
     ```
 6. This will delete the entire content of the COS bucket
 
-###MinIO
-### MinIO installation
-wget https://dl.min.io/client/mc/release/linux-amd64/mc
-### MinIO permissions
- chmod +x mc
- ### test setup
- ./mc --version
-### MinIO configration 
-mc config host add <ALIAS> <COS-ENDPOINT> <ACCESS-KEY> <SECRET-KEY> 
-### MinIO delete bucket contents
-./mc rm cos/<bucket name>/ --recursive --force
+
 
